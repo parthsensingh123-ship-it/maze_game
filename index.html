@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A* Maze</title>
+  <meta name="description" content="Build walls on a grid and watch A* search find the cheapest path from start to goal.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E2A3A'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23F5A623'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>A* Maze</h1>
+      <p>Click or drag on the grid to build walls. A* finds the cheapest path from the start to the goal as you build.</p>
+    </header>
+
+    <div class="stage">
+      <section class="board-area" aria-label="Maze">
+        <div class="frame">
+          <div id="board" class="board" tabindex="0" role="application"
+               aria-label="Maze grid. Arrow keys move the cursor, Space toggles a wall, S moves the start here, G moves the goal here."></div>
+        </div>
+        <ul class="legend">
+          <li><span class="swatch swatch-wall"></span>Wall</li>
+          <li><span class="swatch swatch-seen"></span>Searched</li>
+          <li><span class="swatch swatch-route"></span>Route</li>
+        </ul>
+      </section>
+
+      <aside class="panel">
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+
+        <dl class="stats">
+          <div class="stat">
+            <dt>Path cost</dt>
+            <dd id="cost">-</dd>
+          </div>
+          <div class="stat">
+            <dt>Cells searched with A*</dt>
+            <dd id="exA">-</dd>
+          </div>
+          <div class="stat">
+            <dt>Cells searched without heuristic</dt>
+            <dd id="exB">-</dd>
+          </div>
+        </dl>
+        <p id="saving" class="saving"></p>
+
+        <fieldset class="mode">
+          <legend>Show the search of</legend>
+          <label>
+            <input type="radio" name="mode" value="astar" checked>
+            <span>A*</span>
+          </label>
+          <label>
+            <input type="radio" name="mode" value="blind">
+            <span>No heuristic</span>
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button id="replay" class="btn btn-primary" type="button">Replay search</button>
+          <button id="random" class="btn" type="button">Random walls</button>
+          <button id="clear" class="btn" type="button">Clear walls</button>
+        </div>
+
+        <p class="hint">Drag the green S or the red G to move them. With a keyboard, use the arrow keys, Space to toggle a wall, S or G to move the start or goal.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script src="astar.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
